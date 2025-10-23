@@ -100,7 +100,7 @@ app.get('/api/attendance', async (req, res) => {
 
 var path = require('path');
 const dotenv=require('dotenv');
-dotenv.config({path: './config.env'});
+dotenv.config({path: './config/config.env'});
 
 // ---------- start ----------
 const PORT = process.env.PORT || 4000;
