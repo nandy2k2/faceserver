@@ -157,7 +157,7 @@ exports.facematch1 = async (req, res) => {
     const users = await User1.find({ program: program, semester: semester, section: section });
     //console.log(users);
     const results = [];
-    const THRESHOLD = 0.55; // cosine similarity threshold - tune this
+    const THRESHOLD = 0.95; // cosine similarity threshold - tune this
 
     for (let i = 0; i < embeddings.length; i++) {
       const e = embeddings[i];
@@ -229,40 +229,40 @@ exports.facematch1 = async (req, res) => {
        
       } else {
         results.push({ detectedIndex: i, matched: false, name: best.user.name, userId: best.user._id, score: best.score });
-         try {
+    //      try {
        
-         const pat1 = await attendancenew.findOneAndUpdate(
-      {
-        classid: classid,
-        regno: best.user.regNo,
-        student: best.user.name,
-      },
-      {
-        name: name,
-        colid: colid,
-        user: user,
-        year: year,
-        programcode: programcode,
-        program: program,
-        course: course,
-        coursecode: coursecode,
-        att: 0,
-        classdate: new Date(classdate),
-        semester: best.user.semester,
-        section: best.user.section,
-        status1: "Submitted",
-        comments: "NA",
-      },
-      {
-        new: true,
-        upsert: true,
-      }
-    );
+    //      const pat1 = await attendancenew.findOneAndUpdate(
+    //   {
+    //     classid: classid,
+    //     regno: best.user.regNo,
+    //     student: best.user.name,
+    //   },
+    //   {
+    //     name: name,
+    //     colid: colid,
+    //     user: user,
+    //     year: year,
+    //     programcode: programcode,
+    //     program: program,
+    //     course: course,
+    //     coursecode: coursecode,
+    //     att: 0,
+    //     classdate: new Date(classdate),
+    //     semester: best.user.semester,
+    //     section: best.user.section,
+    //     status1: "Submitted",
+    //     comments: "NA",
+    //   },
+    //   {
+    //     new: true,
+    //     upsert: true,
+    //   }
+    // );
   
 
-    } catch(err) {
-      console.log(err);
-    }
+    // } catch(err) {
+    //   console.log(err);
+    // }
       }
     }
 
