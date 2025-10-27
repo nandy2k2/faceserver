@@ -100,10 +100,15 @@ app.use(bodyParser.json({limit: '10mb'}));
 
 const facematch=require('./Controllers/facematch');
 
+app.post('/api/register1',  facematch.faceregister1);
+app.post('/api/match1',  facematch.facematch1);
+
 app.post('/api/register',  facematch.faceregister);
 app.post('/api/match',  facematch.facematch);
 app.get('/api/users',  facematch.getfaceusers);
 app.post('/api/attendance',  facematch.getfaeattendance);
+
+
 
 var path = require('path');
 const dotenv=require('dotenv');
