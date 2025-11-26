@@ -121,14 +121,20 @@ const PORT = process.env.PORT || 3000;
 
 // const DB1="mongodb+srv://user2:Pooja@123456@cluster0.bhzac.mongodb.net/test?retryWrites=true&w=majority"
 const DB1=process.env.DATABASE2;
-console.log(DB1)
+//console.log(DB1)
 
-mongoose.connect(DB1, {
-    useNewUrlParser:true, 
-    // useUnifiedTopology:true, 
-    useCreateIndex: true,
-    useFindAndModify: false
-})
-  .then(()=>{
+// mongoose.connect(DB1, {
+//     useNewUrlParser:true, 
+//     // useUnifiedTopology:true, 
+//     useCreateIndex: true,
+//     useFindAndModify: false
+// })
+//   .then(()=>{
+//     app.listen(PORT, ()=>console.log('Server running', PORT));
+//   }).catch(err=>{ console.error('mongo error', err); });
+
+  mongoose.connect(DB1).then(con => {
+      console.log('Connected');
+  }).then(()=>{
     app.listen(PORT, ()=>console.log('Server running', PORT));
   }).catch(err=>{ console.error('mongo error', err); });
